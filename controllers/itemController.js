@@ -25,7 +25,7 @@ const addItem = async (req, res) => {
 
 const search = async (req, res) => {
     try {
-        const result = await Item.find({ name: req.body.query })
+        const result = await Item.find({ name: { $eq: req.body.query } })
         return res.status(200).json({ message: 'success', result })
 	} catch (error) {
 		return res.status(500).json({ message: 'something went wrong!', error: error.stack })
